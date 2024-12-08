@@ -53,12 +53,12 @@ function action(data) {
       if (file) {
         // If the target article was found. then replace the backlink with 'post_link'
         // 检查 realName 是否为 :year-:month-:day-:title 格式
+        let title = file.articleName;
         const pattern = /^(\d{4})-(\d{2})-(\d{2})-(.+)$/;
-        const match = file.articleName.match(pattern);
-
+        const match = title.match(pattern);
         if (match) {
           // 如果匹配，则只取标题部分
-          file.articleName = match[4];
+          title = match[4];
         }
         content = content.replace(
           linkName,
