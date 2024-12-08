@@ -47,6 +47,16 @@ function action(data) {
         .split("|");
       let anchor = null;
       [realName, anchor] = realName.split("#");
+      
+      // 检查 realName 是否为 :year-:month-:day-:title 格式
+      const pattern = /^(\d{4})-(\d{2})-(\d{2})-(.+)$/;
+      const match = realName.match(pattern);
+
+      if (match) {
+        // 如果匹配，则只取标题部分
+        realName = match[4];
+      }
+
       let realNameExt = realName + ".md";
       let file = fileList.find((file) => file.fileNameExt === realNameExt);
       if (file) {
